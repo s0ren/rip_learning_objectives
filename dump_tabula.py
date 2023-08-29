@@ -2,10 +2,10 @@
 import sys
 import pandas as pd
 
-def main(input_file_name):
-    # Read pdf into a list of DataFrame
+def parse(file_name):
+        # Read pdf into a list of DataFrame
     # dfs = tabula.read_pdf("test.pdf", pages=[19, 20, 21], pandas_options={'header': None})
-    dfs = tabula.read_pdf(input_file_name, 
+    dfs = tabula.read_pdf(file_name, 
                         pages='all',
                         #   pages=[19, 20, 21],
                         guess=False,
@@ -102,16 +102,16 @@ def main(input_file_name):
             i -= 2
 
         i += 1
-
     # print(fag)
+    return fag, md_top
+
+def main(input_file_name):
+
+    fag, md = parse(input_file_name)
 
     # markdown
 
     print('Antal hele fag:', len(fag), file=sys.stderr)
-
-    md = md_top
-
-    # md += "# Fag og målepinde" + "\n\n"
 
     for f in fag:
         # for at lave en titel overskrift for hvert fag
