@@ -9,10 +9,10 @@ _Der ligger færdige word- og md-filer i listen herover._
 
 Dette er en uofficielt konvertering!  
 
-* Der kan mangle fag!
-* Der kan mangle mål!
-* Mål og fag kan være sammenblandede.
-* Der kan også mangle andre informationer om fag og mål.
+* Der _kan_ mangle fag!
+* Der _kan_ mangle mål!
+* Mål og fag _kan_ være sammenblandede.
+* Der _kan_ også mangle andre informationer om fag og mål.
 
 Det er altid en god ide at kigge på pdf'en også, for lige at checke at alting er som det skal være :-)
 
