@@ -3,6 +3,8 @@
 Et forsøg på at hente målpinde for hvert fag fra uddannelsesadministrations elendige pdf'er.
 Det skulle gerne være muligt at se en klarere oversigt, og ikke mindst kunne kopiere fra den.
 
+_Der ligger færdige word- og md-filer i listen herover._
+
 ## __ANSVARSFRASKRIVELSE__
 
 Dette er en uofficielt konvertering!  
