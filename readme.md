@@ -1,20 +1,45 @@
 ﻿# Uddannelsesordnings pdf til MarkDown
 
-Et forsøg på at hente målpinde for hvert fag fra uddannelsesadministrations elendige pdf'er
+Et forsøg på at hente målpinde for hvert fag fra uddannelsesadministrations elendige pdf'er.
+Det skulle gerne være muligt at se en klarere oversigt, og ikke mindst kunne kopiere fra den.
+
+## __ANSVARSFRASKRIVELSE__
+
+Dette er en uofficielt konvertering!  
+
+* Der kan mangle fag!
+* Der kan mangle mål!
+* Mål og fag kan være sammenblandede.
+* Der kan også mangle andre informationer om fag og mål.
+
+Det er altid en god ide at kigge på pdf'en også, for lige at checke at alting er som det skal være :-)
+
 
 ## Anvendelse
 
-Når du har hentet pdf'en fra uddannelsesadministration.dk, kan den konverteres til MarkDown med 
+1. Start på uddannelsesadministration.dk
 
-    python3 dump_tabula.py
+    I en browser
 
-Men det er fedest at omdirigere stdout til en fil:
+2. Naviger
 
-    python3 dump_tabula.py > allefag_prog_2023.md
+   1. vælg `Find EUD-uddannelsesordning`
+   2. Udfyld felterne, efter dine behov. Det virker med de valg jeg har tastet her under:
 
-MarkDown-filen kan så bruges direkte eller konverteres til f.eks. word, f.eks med `pandoc`:
+3.  Download
+    ![screenshot af download siden, på uddannelsesadministration.dk](assets/2023-08-29-09-30-39.png)
 
-    pandoc -i allefag_prog_2023.md -o allefag_prog_2023.docx
+4. Når du har hentet pdf'en fra uddannelsesadministration.dk, kan den konverteres til MarkDown med 
+
+        python3 dump_tabula.py
+
+    4.2. Men det er fedest at omdirigere stdout til en fil:
+
+        python3 dump_tabula.py > allefag_prog_2023.md
+
+5. MarkDown-filen kan så bruges direkte eller konverteres til f.eks. word, f.eks med `pandoc`:
+
+        pandoc -i allefag_prog_2023.md -o allefag_prog_2023.docx
 
 ## Programkoden
 
@@ -44,15 +69,17 @@ Jeg kører scriptet i wsl2/ubuntu.
 
 ## Todo
 
-* Pæne og håndterbare funktioner
-* unittest
-* valgt speciale i Titel
-* Http request som selv henter pdf'erne
-  * årligt
-* diff på tidligere år
-* Indfang overskrifter i tekst
-  * kommer pt ind i mål :-(
-* ... 
+* [ ] Pæne og håndterbare funktioner
+* [ ] VSCode remote wsl projekt
+* [ ] unittest
+* [ ] valgt speciale i Titel
+* [ ] Http request som selv henter pdf'erne
+   * [ ] årligt
+* [ ] diff på tidligere år
+* [ ] Indfang overskrifter i tekst
+  * [ ] kommer pt ind i mål :-(
+* [ ] Alle uddannelser og varianter og versioner i database til analyse og versionsstyring
+* [ ] ... 
 
 ## Kilder
 
