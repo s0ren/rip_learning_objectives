@@ -4,6 +4,34 @@ import dump_tabula as dt
 
 class TestEkstern(unittest.TestCase):
 
+    # def test_parse_args():
+    #     testargs = ["prog", "-f", "/home/fenton/project/setup.py"]
+    #     with patch.object(sys, 'argv', testargs):
+    #         setup = get_setup_file()
+    #         assert setup == "/home/fenton/project/setup.py"
+
+    def test_get_fielname(self):
+        from unittest.mock import patch
+        import sys
+        testargs = ['dump_tabula.py', 'testfile.pdf', 'hest']
+
+        expected_filename = testargs[1]
+
+        with patch.object(sys, 'argv', testargs):
+            actual_filename = dt.get_filename()
+            self.assertEqual(expected_filename, actual_filename, 'filnavn overført til sys.argv[1]')
+
+    def test_get_fielname_default(self):
+        from unittest.mock import patch
+        import sys
+        testargs = ['dump_tabula.py',]
+
+        expected_filename = 'test1.pdf'
+
+        with patch.object(sys, 'argv', testargs):
+            actual_filename = dt.get_filename()
+            self.assertEqual(expected_filename, actual_filename, 'filnavn overført til sys.argv[1]')
+
     def test_main(self):
         """
         tester main med filen test1.pdf der kun indeholder 1 side- med 3 fag

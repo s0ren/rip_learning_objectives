@@ -143,10 +143,13 @@ def main(input_file_name):
 
     print(md, file=sys.stdout)
 
+def get_filename():
+    if len(sys.argv) > 1:
+        return sys.argv[1]
+    else:
+        return 'test/data/test1.pdf'
+
 if __name__ == '__main__':
         # input file
-    if len(sys.argv) > 1:
-        input_file_name = sys.argv[1]
-    else:
-        input_file_name = 'test/data/test1.pdf'
-    main(input_file_name)
+   
+    main(get_filename())
