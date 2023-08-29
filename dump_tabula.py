@@ -134,7 +134,9 @@ for f in fag:
     md += '|:-|:-|' + '\n'
     for h in f['head']:
         # print(h)
-        k, v = h.split(':')
+        h_line = h.split(':')
+        k = h_line[0]
+        v = ':'.join(h_line[1:])
         md += f'|{k}|{v}|' + '\n'
     md += '\n'
 
