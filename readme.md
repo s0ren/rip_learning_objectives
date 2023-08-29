@@ -12,7 +12,7 @@ Men det er fedest at omdirigere stdout til en fil:
 
     python3 dump_tabula.py > allefag_prog_2023.md
 
-MarkDown.filen kan så bruges direkte eller konverteres til f.eks. word, f.eks med `pandoc`:
+MarkDown-filen kan så bruges direkte eller konverteres til f.eks. word, f.eks med `pandoc`:
 
     pandoc -i allefag_prog_2023.md -o allefag_prog_2023.docx
 
