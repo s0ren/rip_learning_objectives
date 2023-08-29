@@ -42,6 +42,17 @@ Man skal have Java installeret, så på linux kan du køre:
 
 Jeg kører scriptet i wsl2/ubuntu.
 
+## Todo
+
+* Pæne og håndterbare funktioner
+* unittest
+* valgt speciale i Titel
+* Http request som selv henter pdf'erne
+  * årligt
+* diff på tidligere år
+* Indfang overskrifter i tekst
+  * kommer pt ind i mål :-(
+* ... 
 
 ## Kilder
 
