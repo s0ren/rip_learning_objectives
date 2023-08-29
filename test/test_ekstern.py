@@ -4,12 +4,6 @@ import dump_tabula as dt
 
 class TestEkstern(unittest.TestCase):
 
-    # def test_parse_args():
-    #     testargs = ["prog", "-f", "/home/fenton/project/setup.py"]
-    #     with patch.object(sys, 'argv', testargs):
-    #         setup = get_setup_file()
-    #         assert setup == "/home/fenton/project/setup.py"
-
     def test_get_fielname(self):
         from unittest.mock import patch
         import sys
