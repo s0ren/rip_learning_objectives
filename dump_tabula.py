@@ -105,14 +105,7 @@ def parse(file_name):
     # print(fag)
     return fag, md_top
 
-def main(input_file_name):
-
-    fag, md = parse(input_file_name)
-
-    # markdown
-
-    print('Antal hele fag:', len(fag), file=sys.stderr)
-
+def build_md(fag, md):
     for f in fag:
         # for at lave en titel overskrift for hvert fag
         # tag første linje i head og split ord
@@ -140,6 +133,18 @@ def main(input_file_name):
             w = o.split()
             md += f'{w[0]}. {" ".join(w[1:])}' + '\n'
         md += '\n'
+    return md
+
+def main(input_file_name):
+
+    fag, md = parse(input_file_name)
+
+    # markdown
+
+    print('Antal hele fag:', len(fag), file=sys.stderr)
+
+#
+    md = build_md(fag, md)
 
     print(md, file=sys.stdout)
 
@@ -148,6 +153,7 @@ def get_filename():
         return sys.argv[1]
     else:
         return 'test/data/test1.pdf'
+    
 
 if __name__ == '__main__':
         # input file
