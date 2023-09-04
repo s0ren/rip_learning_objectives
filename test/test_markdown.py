@@ -145,7 +145,6 @@ class TestMarkDown(unittest.TestCase):
 1. første mål
 2. andet mål
 
-
 '''
 
         # Act
