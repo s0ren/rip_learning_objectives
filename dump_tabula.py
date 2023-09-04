@@ -154,8 +154,43 @@ def get_filename():
     else:
         return 'test/data/test1.pdf'
     
+def get_params():
+    import argparse
+    parser = argparse.ArgumentParser(
+        prog='dump_tabula',
+        description="Dumper fag og læringsmål fra pdf'fil fra uddannelsesadministration.dk, til markdown som kan redigeres eller konverteres videre (med f.eks. pandoc)",
+        # usage=''
+        # epilog=''
+        )
+    parser.add_argument('-i', 
+                        action='store',
+                        dest='input_filename',
+                        # default=sys.stdin,
+                        default='test/data/test1.pdf',
+                        # type=argparse.FileType('r'),
+                        help='the input file (a pdf) to dump. Default is "test/data/test1.pdf"',
+    )
+    parser.add_argument('-p', '--pagebreaks',
+                        action='store_true',
+                        default=False,
+                        dest='pagebreaks',
+                        help='Sideskift før hvert fag',
+    )
+    parser.add_argument('--toc',
+                        action='store_true',
+                        default=False,
+                        dest='toc',
+                        help='Indholdsfortegenlse',
+    )
+    # print('sys.argv:', sys.argv)
+    args = parser.parse_args()
+    # print(args.input_filename, args.count, args.verbose)
+    return args
+    
 
 if __name__ == '__main__':
         # input file
    
-    main(get_filename())
+    # main(get_filename())
+    args = get_params()
+    main(args.input_filename)
