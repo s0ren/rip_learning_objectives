@@ -20,7 +20,7 @@ class TestEkstern(unittest.TestCase):
         import sys
         testargs = ['dump_tabula.py',]
 
-        expected_filename = 'test1.pdf'
+        expected_filename = 'test/data/test1.pdf'
 
         with patch.object(sys, 'argv', testargs):
             actual_filename = dt.get_filename()
