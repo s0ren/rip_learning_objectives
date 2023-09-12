@@ -7,6 +7,91 @@ from mistletoe.ast_renderer import AstRenderer
 
 import json
 
+class TestOptional_features_in_markdown(unittest.TestCase):
+    '''
+    I denne klasse tester jeg -p pagebreak og -toc
+    '''
+
+    def test_pagebreak(self):
+        '''
+        indeholder markdown side skift når params.pagebreak == True
+        '''
+        # Arrange  
+        global args
+        from unittest.mock import Mock
+        from unittest.mock import patch
+        args = Mock()
+        args.pagebreaks = True
+        args.toc = False
+
+        fag, md_top = dt.parse('test/data/test1.pdf')
+
+        # Act
+        
+        with patch('dump_tabula.args', args):
+            md = dt.build_md(fag, md_top)
+        
+        ast = Document(md)
+        with AstRenderer() as astRenderer:
+            print(astRenderer.render(ast))
+        
+        # Assert
+        number_of_h2s = 0
+        for i in range(1, len(ast.children)):
+            child = ast.children[i]
+            if type(child) == mistletoe.block_token.Heading and child.level == 2:
+                h2 = child
+                number_of_h2s += 1
+                p = ast.children[i-1]
+                self.assertIsInstance(p, mistletoe.block_token.Paragraph, 'elementet før h2 er p')
+                self.assertEquals(len(p.children), 5, '5 elementer i p')
+                self.assertIsInstance(p.children[0], mistletoe.span_token.RawText)
+                self.assertEquals( p.children[0].content, "<div style=\"page-break-after: always; visibility: hidden\">" )
+
+        self.assertTrue(args.pagebreaks)
+        self.assertEquals(number_of_h2s, 3)
+
+    def test_toc(self):
+        '''
+        indeholder markdown side skift når params.toc == True
+        '''
+        # Arrange  
+        global args
+        from unittest.mock import Mock
+        from unittest.mock import patch
+        args = Mock()
+        args.pagebreaks = False
+        args.toc = True
+
+        fag, md_top = dt.parse('test/data/test1.pdf')
+
+        # Act
+        
+        with patch('dump_tabula.args', args):
+            md = dt.build_md(fag, md_top)
+        
+        ast = Document(md)
+        with AstRenderer() as astRenderer:
+            print(astRenderer.render(ast))
+        
+        # Assert
+        number_of_h2s = 0
+        for i in range(1, len(ast.children)):
+            child = ast.children[i]
+            if type(child) == mistletoe.block_token.Heading and child.level == 2:
+                h2 = child
+                number_of_h2s += 1
+                p = ast.children[i-1]
+                self.assertIsInstance(p, mistletoe.block_token.Paragraph, 'elementet før h2 er p')
+                self.assertEquals(len(p.children), 5, '5 elementer i p')
+                self.assertIsInstance(p.children[0], mistletoe.span_token.RawText)
+                self.assertEquals( p.children[0].content, "<div style=\"page-break-after: always; visibility: hidden\">" )
+
+        self.assertTrue(args.pagebreaks)
+        self.assertEquals(number_of_h2s, 3)
+
+
+    
 class TestMarkDown_w_parser(unittest.TestCase):
 
     def test_markdown_kun_titel(self):

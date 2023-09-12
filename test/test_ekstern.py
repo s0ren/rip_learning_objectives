@@ -3,8 +3,113 @@
 import dump_tabula as dt
 
 class TestEkstern(unittest.TestCase):
+    
+    @unittest.skip
+    def test_dummy(self):
+        '''
+        Dummy test
+        '''
+        # arrange
+        # act
+        # assert
+        pass
 
-    def test_get_fielname(self):
+    def test_get_params_filename(self):
+        '''
+        Er der et inputfilnavn på kommando linien med prefix -i
+        '''
+          # arrange
+        from unittest.mock import patch
+        import sys
+        testargs = ['dump_tabula.py', '-i', 'dump_tabula.py']
+
+        expected_filename = testargs[2]
+
+        # act
+
+        with patch.object(sys, 'argv', testargs):
+            p = dt.get_params()
+        actual_filename = p.input_filename
+
+        # assert
+        self.assertEqual(expected_filename, actual_filename, 'filnavn overført til sys.argv / params')
+        
+    # @unittest.skip
+    def test_get_params_default_filename(self):
+        '''
+        Er der et defaultfilnavn når der ikke er et på kommando linien
+        '''
+        from unittest.mock import patch
+        import sys
+        testargs = ['dump_tabula.py', ]
+
+        expected_filename = 'test/data/test1.pdf'
+
+        # act
+
+        with patch.object(sys, 'argv', testargs):
+            p = dt.get_params()
+        actual_filename = p.input_filename
+
+        # assert
+        self.assertEqual(expected_filename, actual_filename, 'filnavn overført til sys.argv / params')
+
+    # @unittest.skip
+    def test_get_param_pagebreaks(self):
+        '''
+        opfanges parameteren --pagebreaks ?
+        '''
+        from unittest.mock import patch
+        import sys
+        testargs = ['dump_tabula.py', '-p',]
+
+        # act
+
+        with patch.object(sys, 'argv', testargs):
+            p = dt.get_params()
+        actual_flag = p.pagebreaks
+
+        # assert
+        self.assertTrue( actual_flag, 'pagebreak flag overført til sys.argv / params')
+
+    # @unittest.skip
+    def test_get_param_pagebreaks_long(self):
+        '''
+        opfanges parameteren --pagebreaks ?
+        '''
+        from unittest.mock import patch
+        import sys
+        testargs = ['dump_tabula.py', '--pagebreaks',]
+
+        # act
+
+        with patch.object(sys, 'argv', testargs):
+            p = dt.get_params()
+        actual_flag = p.pagebreaks
+
+        # assert
+        self.assertTrue( actual_flag, 'pagebreak flag overført til sys.argv / params')
+
+    # @unittest.skip
+    def test_get_param_TOC(self):
+        '''
+        opfanges parameteren --toc
+        '''
+        from unittest.mock import patch
+        import sys
+        testargs = ['dump_tabula.py', '--toc',]
+
+        # act
+
+        with patch.object(sys, 'argv', testargs):
+            p = dt.get_params()
+        actual_flag = p.toc
+
+        # assert
+        self.assertTrue( actual_flag, 'TableOfContent flag overført til sys.argv / params')
+
+        
+    def test_get_filename(self):
         from unittest.mock import patch
         import sys
         testargs = ['dump_tabula.py', 'testfile.pdf', 'hest']
