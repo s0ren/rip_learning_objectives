@@ -106,7 +106,20 @@ def parse(file_name):
     return fag, md_top
 
 def build_md(fag, md):
+#    if hasattr(args, 'toc') and args.toc:
+    if args.toc:
+        md += ('<div style="page-break-after: always; visibility: hidden"> \n'
+                # + ' \pagebreak \n'
+                + ' \\tableofcontents \n'
+                # + r' \pagebreak \n'
+                + '</div>\n')
     for f in fag:
+        if args.pagebreaks:
+            md += ('<div style="page-break-after: always; visibility: hidden">\n'
+                    + ' \\pagebreak\n'
+                    + '</div>\n\n')
+            # alternativ kunne det vist også være <div style="page-break-before:always"></div>
+
         # for at lave en titel overskrift for hvert fag
         # tag første linje i head og split ord
         t = f['head'][0].split()
@@ -154,8 +167,40 @@ def get_filename():
     else:
         return 'test/data/test1.pdf'
     
+def get_params():
+    import argparse
+    parser = argparse.ArgumentParser(
+        prog='dump_tabula',
+        description="Dumper fag og læringsmål fra pdf'fil fra uddannelsesadministration.dk, til markdown som kan redigeres eller konverteres videre (med f.eks. pandoc)",
+        # usage=''
+        # epilog=''
+        )
+    parser.add_argument('-i', 
+                        action='store',
+                        dest='input_filename',
+                        # default=sys.stdin,
+                        default='test/data/test1.pdf',
+                        # type=argparse.FileType('r'),
+                        help='the input file (a pdf) to dump. Default is "test/data/test1.pdf"',
+    )
+    parser.add_argument('-p', '--pagebreaks',
+                        action='store_true',
+                        default=False,
+                        dest='pagebreaks',
+                        help='Sideskift før hvert fag',
+    )
+    parser.add_argument('--toc',
+                        action='store_true',
+                        default=False,
+                        dest='toc',
+                        help='Indholdsfortegenlse',
+    )
+    # print('sys.argv:', sys.argv)
+    args = parser.parse_args()
+    # print(args.input_filename, args.count, args.verbose)
+    return args
+    
 
+args = get_params()
 if __name__ == '__main__':
-        # input file
-   
-    main(get_filename())
+    main(args.input_filename)
