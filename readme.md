@@ -33,11 +33,15 @@ Det er altid en god ide at kigge på pdf'en også, for lige at checke at alting 
 
 4. Når du har hentet pdf'en fra uddannelsesadministration.dk, kan den konverteres til MarkDown med 
 
-        python3 dump_tabula.py
+        python3 dump_tabula.py -i Ikke-navngivet.pdf
 
     4.2. Men det er fedest at omdirigere stdout til en fil:
 
-        python3 dump_tabula.py > allefag_prog_2023.md
+        python3 dump_tabula.py -i Ikke-navngivet.pdf > allefag_prog_2023.md
+
+    4.3 Du kan også tilføje sideskift mellem hvert fag, og indholdsfortegnelse med hhv. `-p` og `--toc`
+
+         python3 dump_tabula.py -p --toc -i Ikke-navngivet.pdf > allefag_prog_2023.md
 
 5. MarkDown-filen kan så bruges direkte eller konverteres til f.eks. word, f.eks med `pandoc`:
 
@@ -71,17 +75,7 @@ Jeg kører scriptet i wsl2/ubuntu.
 
 ## Todo
 
-* [ ] Pæne og håndterbare funktioner
-* [ ] VSCode remote wsl projekt
-* [ ] unittest
-* [ ] valgt speciale i Titel
-* [ ] Http request som selv henter pdf'erne
-   * [ ] årligt
-* [ ] diff på tidligere år
-* [ ] Indfang overskrifter i tekst
-  * [ ] kommer pt ind i mål :-(
-* [ ] Alle uddannelser og varianter og versioner i database til analyse og versionsstyring
-* [ ] ... 
+Se venligt projektets [issues](https://github.com/s0ren/rip_learning_objectives/issues), hvor du også selv kan skrive noget op som ikke virker, eller en feature som du ønsker oprettet.
 
 ## Kilder
 
