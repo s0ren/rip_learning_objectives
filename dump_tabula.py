@@ -106,7 +106,20 @@ def parse(file_name):
     return fag, md_top
 
 def build_md(fag, md):
+#    if hasattr(args, 'toc') and args.toc:
+    if args.toc:
+        md += ('<div style="page-break-after: always; visibility: hidden"> \n'
+                # + ' \pagebreak \n'
+                + ' \\tableofcontents \n'
+                # + r' \pagebreak \n'
+                + '</div>\n')
     for f in fag:
+        if args.pagebreaks:
+            md += ('<div style="page-break-after: always; visibility: hidden">\n'
+                    + ' \\pagebreak\n'
+                    + '</div>\n\n')
+            # alternativ kunne det vist også være <div style="page-break-before:always"></div>
+
         # for at lave en titel overskrift for hvert fag
         # tag første linje i head og split ord
         t = f['head'][0].split()
@@ -188,9 +201,6 @@ def get_params():
     return args
     
 
+args = get_params()
 if __name__ == '__main__':
-        # input file
-   
-    # main(get_filename())
-    args = get_params()
     main(args.input_filename)
