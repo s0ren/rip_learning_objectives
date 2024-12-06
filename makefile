@@ -31,7 +31,7 @@ all: markdown result_pdf word
 
 # Rule to convert PDF to Markdown using dump_to_md.py
 $(OUTPUT_DIR)/%.md: $(INPUT_DIR)/%.pdf
-	python3 dump_tabula.py -p --toc -i "$<" > "$@"
+	python dump_tabula.py -p --toc -i "$<" > "$@"
 
 # Rule to convert resulting MD to new pdf file, using pandoc
 $(OUTPUT_DIR)/%.pdf: $(OUTPUT_DIR)/%.md
@@ -46,9 +46,13 @@ clean:
 	rm -f $(MD_FILES)
 	rm -f $(RESULT_PDF_FILES)
 	rm -f $(WORD_FILES)
+# rm -Force $(MD_FILES)
+# rm -Force $(RESULT_PDF_FILES)
+# rm -Force $(WORD_FILES)
 
 dump:
-	echo $(PDF_FILES)
+	@echo $(PDF_FILES)
+	@echo $(MD_FILES)
 
 _:
 	@# echo '$(MD_FILES)'

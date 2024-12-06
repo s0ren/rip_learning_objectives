@@ -1,4 +1,7 @@
 ﻿# pdfquery
 # camelot-py[cv]
 tabula-py
-mistletoe
+#mistletoe
+pandas
+jpype1
+
